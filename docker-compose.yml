@@ -1,17 +1,20 @@
 version: '3'
 services:
   web:
-        image: nginx:latest
+        image: nginx
         container_name: nginx
         restart: always
         volumes:
             - ./src:/src
-        links:
+            - ./nginx-config/default.conf:/nginx-config/default.conf
+
+        ports:
+            - 80:80
+        depends_on:
             - php
   php:
+       image: php:8.0
        build: .
        container_name: php
-       ports:
-            - "80:80"
        volumes:
-            - ./src/:/var/www/html
+            - ./src:/src
