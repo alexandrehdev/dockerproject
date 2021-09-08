@@ -6,10 +6,11 @@ services:
         restart: always
         volumes:
             - ./src:/src
-            - ./nginx-config/default.conf:/nginx-config/default.conf
-
+            - ./nginx-config/nginx.conf:/nginx-config/nginx.conf
         ports:
             - 80:80
+
+
         depends_on:
             - php
   php:
